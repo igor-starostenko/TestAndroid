@@ -6,15 +6,7 @@
     android:background="@color/blue"
     android:id="@+id/login_form">
 
-
     <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
 
     <Button
         android:layout_width="220dip"
@@ -62,16 +54,3 @@
         android:singleLine="true" />
 
 </RelativeLayout>
-
-<!--<Button-->
-
-<!--android:layout_width="220dip"-->
-<!--android:layout_height="40dip"-->
-<!--android:background="@color/lightblue"-->
-<!--android:layout_centerInParent="true"-->
-<!--android:id="@+id/userName_sign_in_button"-->
-<!--style="?android:textAppearanceSmall"-->
-<!--android:text="@string/action_sign_in"-->
-<!--android:textStyle="bold"-->
-<!--android:onClick="detail"-->
-    <!--/>-->

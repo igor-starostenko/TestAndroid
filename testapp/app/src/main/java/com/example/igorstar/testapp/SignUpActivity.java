@@ -25,10 +25,8 @@ public class SignUpActivity extends MainActivity{
     // UI references.
     private AutoCompleteTextView mUNView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
-    protected String userName;
-    protected String password;
+    protected static String user;
+    protected static String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,21 +47,19 @@ public class SignUpActivity extends MainActivity{
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
     }
 
     public void submit(View view) {
         attemptLogin();
-        if (userName.isEmpty()||password.isEmpty()){
+        if (user.isEmpty()||pass.isEmpty()){
             return;
         }
         Intent intent = new Intent(SignUpActivity.this, DetailActivity.class);
-        intent.putExtra("name",userName);
-        intent.putExtra("pass",password);
+        intent.putExtra("name",user);
+        intent.putExtra("pass",pass);
         startActivity(intent);
-        Log.e(TAG, "userName: "+userName);
-        Log.e(TAG, "password: "+password);
+        Log.e(TAG, "username: "+user);
+        Log.e(TAG, "password: "+pass);
     }
 
     /**
@@ -78,21 +74,21 @@ public class SignUpActivity extends MainActivity{
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        userName = mUNView.getText().toString();
-        password = mPasswordView.getText().toString();
+        user = mUNView.getText().toString();
+        pass = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(pass)) {
             mPasswordView.setError(getString(R.string.error_field_required));
             focusView = mPasswordView;
             cancel = true;
         }
 
         // Check for a valid userName.
-        if (TextUtils.isEmpty(userName)) {
+        if (TextUtils.isEmpty(user)) {
             mUNView.setError(getString(R.string.error_field_required));
             focusView = mUNView;
             cancel = true;

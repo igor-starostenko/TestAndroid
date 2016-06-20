@@ -24,8 +24,6 @@ import android.widget.CursorAdapter;
 
 import android.widget.ExpandableListView;
 
-//import com.example.testlibrary.AppList;
-
 import com.example.testlibrary.AppList;
 
 import java.util.ArrayList;
