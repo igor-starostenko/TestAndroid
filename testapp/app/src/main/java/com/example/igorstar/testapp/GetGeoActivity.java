@@ -14,134 +14,76 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-
-public class GetGeoActivity extends DetailActivity implements LocationListener {
-    private TextView locationView;
+//implements LocationListener
+public class GetGeoActivity extends DetailActivity {
+    private TextView CityView;
+    private TextView LongView;
+    private TextView LatView;
     public String TAG = "GetGeoActivity";
+    public String cityName = null;;
     //LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_geo);
-        locationView = (TextView) findViewById(R.id.location);
-        locationView.setText("Scanning location...");
+        CityView = (TextView) findViewById(R.id.location);
+        CityView.setText("Scanning location...");
+        LongView = (TextView) findViewById(R.id.longitude);
+        LatView = (TextView) findViewById(R.id.latitude);
 
-        LocationManager locationManager = (LocationManager)
-                getSystemService(Context.LOCATION_SERVICE);
+        // Acquire a reference to the system Location Manager
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-        LocationListener locationListener = new MyLocationListener();
-        //try  {
-        if (locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER))
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-        if (locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER))
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-
-//        locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, locationListener);
-
-//            locationManager.requestLocationUpdates(
-//                    LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
-        //} catch(Exception e){
-//            locationManager.requestLocationUpdates(
-//                    LocationManager.NETWORK_PROVIDER, 5000, 10, locationListener);
-//        }
-//        MyLocation.LocationResult locationResult = new MyLocation.LocationResult(){
-//            @Override
-//            public void gotLocation(Location location){
-//                //Got the location!
-//                Log.v(TAG, "Got the location!");
-//            }
-//        };
-//        MyLocation myLocation = new MyLocation();
-//        myLocation.getLocation(this, locationResult);
-//        Log.e(TAG, myLocation.toString());
-    }
-
-    @Override
-    public void onLocationChanged(Location loc) {
-            Toast.makeText(
-                    getBaseContext(),
-                    "Location changed: Lat: " + loc.getLatitude() + " Lng: "
-                            + loc.getLongitude(), Toast.LENGTH_SHORT).show();
-            String longitude = "Longitude: " + loc.getLongitude();
-            Log.v("Longitude is; ", longitude);
-            String latitude = "Latitude: " + loc.getLatitude();
-            Log.v("Latitide is: ", latitude);
-
-        /*------- To get city name from coordinates -------- */
-            String cityName = null;
-            Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
-            List<Address> addresses;
-            try {
-                addresses = gcd.getFromLocation(loc.getLatitude(),
-                        loc.getLongitude(), 1);
-                if (addresses.size() > 0) {
-                    System.out.println(addresses.get(0).getLocality());
-                    cityName = addresses.get(0).getLocality();
+        // Define a listener that responds to location updates
+        LocationListener locationListener = new LocationListener() {
+            public String cityName = null;
+            public void onLocationChanged(Location location) {
+                // Called when a new location is found by the network location provider.
+                String longitude = "Longitude: " + location.getLongitude();
+                Log.v("Longitude is; ", longitude);
+                String latitude = "Latitude: " + location.getLatitude();
+                Log.v("Latitide is: ", latitude);
+                /*------- To get city name from coordinates -------- */
+                Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
+                List<Address> addresses;
+                try {
+                    addresses = gcd.getFromLocation(location.getLatitude(),
+                            location.getLongitude(), 1);
+                    if (addresses.size() > 0) {
+                        System.out.println(addresses.get(0).getLocality());
+                        cityName = addresses.get(0).getLocality();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+                CityView.setText("City: "+ cityName);
+                LongView.setText(longitude);
+                LatView.setText(latitude);
+
             }
-            catch (IOException e) {
-                e.printStackTrace();
+
+            public void onStatusChanged(String provider, int status, Bundle extras) {
             }
-            String s = longitude + "\n" + latitude + "\n\nMy Current City is: "
-                    + cityName;
-            Log.e("", s);
+
+            public void onProviderEnabled(String provider) {
+            }
+
+            public void onProviderDisabled(String provider) {
+            }
+        };
+
+        // Register the listener with the Location Manager to receive location updates
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
         }
-
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
     }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
-//    @Override
-//    public void onLocationChanged(Location loc) {
-//        Toast.makeText(
-//                getBaseContext(),
-//                "Location changed: Lat: " + loc.getLatitude() + " Lng: "
-//                        + loc.getLongitude(), Toast.LENGTH_SHORT).show();
-//        String longitude = "Longitude: " + loc.getLongitude();
-//        Log.v(TAG, longitude);
-//        String latitude = "Latitude: " + loc.getLatitude();
-//        Log.v(TAG, latitude);
-//        /*-------to get City-Name from coordinates -------- */
-//        String cityName = null;
-//        Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
-//        List<Address> addresses;
-//        try {
-//            addresses = gcd.getFromLocation(loc.getLatitude(),
-//                    loc.getLongitude(), 1);
-//            if (addresses.size() > 0)
-//                System.out.println(addresses.get(0).getLocality());
-//            cityName = addresses.get(0).getLocality();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        String s = longitude + "\n" + latitude + "\n\nMy Current City is: "
-//                + cityName;
-//    }
-//    @Override
-//    public void onProviderDisabled(String provider) {}
-//
-//    @Override
-//    public void onProviderEnabled(String provider) {}
-//
-//    @Override
-//    public void onStatusChanged(String provider, int status, Bundle extras) {}
 
 }

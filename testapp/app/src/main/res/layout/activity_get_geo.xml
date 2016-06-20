@@ -22,4 +22,28 @@
         android:singleLine="true"
         android:textStyle="bold"
         android:textSize="20dip"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dip"
+        android:textColorHint="@color/lightblue"
+        android:maxLines="1"
+        android:id="@+id/longitude"
+        android:textColor="@color/lightblue"
+        android:layout_marginRight="50dip"
+        android:singleLine="true"
+        android:textStyle="bold"
+        android:textSize="20dip"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dip"
+        android:textColorHint="@color/lightblue"
+        android:maxLines="1"
+        android:id="@+id/latitude"
+        android:textColor="@color/lightblue"
+        android:layout_marginRight="50dip"
+        android:singleLine="true"
+        android:textStyle="bold"
+        android:textSize="20dip"/>
 </LinearLayout>
