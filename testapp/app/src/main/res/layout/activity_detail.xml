@@ -55,5 +55,32 @@
         android:singleLine="true"
         android:textStyle="bold"
         android:textSize="20dip"/>
+
+        <Button
+            android:layout_width="180dip"
+            android:layout_height="40dip"
+            android:layout_centerInParent="true"
+            android:background="@color/lightblue"
+            android:id="@+id/geolocation"
+            style="?android:textAppearanceSmall"
+            android:text="@string/geolocation"
+            android:textStyle="bold"
+            android:onClick="openGeolocation"
+            android:layout_above="@+id/installed_apps"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dip"/>
+
+        <Button
+            android:layout_width="180dip"
+            android:layout_height="40dip"
+            android:layout_centerInParent="true"
+            android:background="@color/lightblue"
+            android:id="@+id/installed_apps"
+            style="?android:textAppearanceSmall"
+            android:text="@string/installed_apps"
+            android:textStyle="bold"
+            android:onClick="openInstalledApps"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dip"/>
     </RelativeLayout>
 </LinearLayout>

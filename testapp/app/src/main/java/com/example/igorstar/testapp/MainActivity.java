@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 
+
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.example.igorstar.testapp.MESSAGE";
 

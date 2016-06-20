@@ -18,7 +18,7 @@ import android.content.Intent;
  * A login screen that offers login via username/password.
  */
 
-public class SignUpActivity extends AppCompatActivity{
+public class SignUpActivity extends MainActivity{
 
     private static final String TAG = "SignUpActivity";
 
@@ -27,8 +27,8 @@ public class SignUpActivity extends AppCompatActivity{
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private String userName;
-    private String password;
+    protected String userName;
+    protected String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

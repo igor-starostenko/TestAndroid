@@ -2,10 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.igorstar.testapp">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -20,16 +17,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SignUpActivity"
+        <activity android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
         </activity>
-        <activity
-            android:name=".DetailActivity">
+        <activity android:name=".DetailActivity">
+            android:label="@string/title_activity_app_list"
+            android:parentActivityName=".SignUpActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SignUpActivity" />
+        </activity>
+        <activity android:name=".AppListActivity"
+            android:label="@string/title_activity_app_list"
+            android:parentActivityName=".SignUpActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SignUpActivity" />
+        </activity>
+        <activity android:name=".GetGeoActivity">
+            android:label="@string/title_activity_app_list"
+            android:parentActivityName=".SignUpActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SignUpActivity" />
         </activity>
     </application>
 
