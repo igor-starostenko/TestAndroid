@@ -1,0 +1,56 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/blue"
+    android:id="@+id/login_form">
+
+    <!-- Login progress -->
+
+    <Button
+        android:layout_width="220dip"
+        android:layout_height="40dip"
+        android:background="@color/lightblue"
+        android:layout_centerInParent="true"
+        android:id="@+id/submit"
+        style="?android:textAppearanceSmall"
+        android:text="@string/submit"
+        android:textStyle="bold"
+        android:onClick="submit"
+        android:layout_marginTop="10dip"/>
+
+    <AutoCompleteTextView
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/prompt_userName"
+        android:textColorHint="@color/lightblue"
+        android:maxLines="1"
+        android:layout_above="@id/submit"
+        android:textColor="@color/lightblue"
+        android:shadowColor="@color/lightblue"
+        android:layout_marginBottom="50dip"
+        android:layout_marginLeft="50dip"
+        android:layout_marginRight="50dip"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/prompt_password"
+        android:textColorHint="@color/lightblue"
+        android:imeActionId="@+id/login"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionUnspecified"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:textColor="@color/lightblue"
+        android:layout_marginLeft="50dip"
+        android:layout_marginRight="50dip"
+        android:layout_above="@id/submit"
+        android:layout_marginBottom="10dip"
+        android:singleLine="true" />
+
+</RelativeLayout>
